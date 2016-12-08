@@ -75,10 +75,10 @@ let allPlayers = [joe1Dict, jillDict, billDict, evaDict, mattDict, kimmyDict, sa
 //}
 
 // this seems the best way to sort the players into an ascending list
-   let allPlayersSortedByHeight = allPlayers.sort { (firstPlayer, secondPlayer) -> Bool in
-        (firstPlayer["height"] as? Int) < (secondPlayer["height"] as? Int)
-}
 
+let allPlayersSortedByHeight = allPlayers.sorted { (firstPlayer, secondPlayer) -> Bool in
+    (firstPlayer["height"] as! Int) < (secondPlayer["height"] as! Int)
+}
 
 ///////////////
 /////////////// Part 2 - distribute the players to teams
@@ -115,13 +115,13 @@ var raptors: [[String : Any]] = []
 while playersWithExp.count != 0 {
     
     sharks.append(playersWithExp[0])
-    playersWithExp.removeAtIndex(0)
+    playersWithExp.remove(at: 0)
     
     dragons.append(playersWithExp[0])
-    playersWithExp.removeAtIndex(0)
+    playersWithExp.remove(at: 0)
     
     raptors.append(playersWithExp[0])
-    playersWithExp.removeAtIndex(0)
+    playersWithExp.remove(at: 0)
 
 }
 
@@ -136,13 +136,13 @@ while playersWithoutExp.count != 0 {
 //    playersWithoutExp.removeAtIndex(0)
     
     raptors.append(playersWithoutExp[0])
-    playersWithoutExp.removeAtIndex(0)
+    playersWithoutExp.remove(at: 0)
     
     dragons.append(playersWithoutExp[0])
-    playersWithoutExp.removeAtIndex(0)
+    playersWithoutExp.remove(at: 0)
     
     sharks.append(playersWithoutExp[0])
-    playersWithoutExp.removeAtIndex(0)
+    playersWithoutExp.remove(at: 0)
 
 }
 
@@ -169,9 +169,9 @@ func getAverageHeight(team: [[String : Any]]) -> Double {
 
 
 // check average (all within 1.5 inches of one another!!)
-var sharksAvgHeight = getAverageHeight(sharks)
-var dragonsAvgHeight = getAverageHeight(dragons)
-var raptorsAvgHeight = getAverageHeight(raptors)
+var sharksAvgHeight = getAverageHeight(team: sharks)
+var dragonsAvgHeight = getAverageHeight(team: dragons)
+var raptorsAvgHeight = getAverageHeight(team: raptors)
 
 ///////////////
 /////////////// Part 3 - Notify the Parents/Guardians
@@ -189,9 +189,9 @@ func notifyParentsAndGuardians(team: [[String : Any]], teamName : String, dateOf
 }
 
 // This seems the easiest way to ensure each team has the correct information. The addition of a few more teams and it might make sense to store this information.
-notifyParentsAndGuardians(dragons, teamName: "Dragons", dateOfFirstPractice: "March 17, 1pm")
-notifyParentsAndGuardians(sharks, teamName: "Sharks", dateOfFirstPractice: "March 17, 3pm")
-notifyParentsAndGuardians(raptors, teamName: "Raptors", dateOfFirstPractice: "March 18, 1pm")
+notifyParentsAndGuardians(team: dragons, teamName: "Dragons", dateOfFirstPractice: "March 17, 1pm")
+notifyParentsAndGuardians(team: sharks, teamName: "Sharks", dateOfFirstPractice: "March 17, 3pm")
+notifyParentsAndGuardians(team: raptors, teamName: "Raptors", dateOfFirstPractice: "March 18, 1pm")
 
 
 
